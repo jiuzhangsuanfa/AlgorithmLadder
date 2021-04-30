@@ -140,7 +140,6 @@ a = 10 ** 50
 b = 10 ** 50
 print(a * b)
 # output : 10000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
-
 ```
 
 
@@ -157,7 +156,7 @@ Java中的大整数乘法实际上可以转化为大整数加法做。
 
 <img src="https://github.com/hzbeiweiwei/AlgorithmLadder/blob/master/Level%202/Image/%5BL2-2%5D%20big%20integer%20add%209.png?raw=true" style="zoom:67%;" />
 
-用8*3079=24632
+用8*3079=24632。
 
 <img src="https://github.com/hzbeiweiwei/AlgorithmLadder/blob/master/Level%202/Image/%5BL2-2%5D%20big%20integer%20add%2010.png?raw=true" style="zoom:67%;" />
 
@@ -251,4 +250,55 @@ public class Solution {
 
 
 
+**扩展知识：**
 
+其实在Java中，还有一个神奇的大数字操作类。
+
+- 可以使用**BigInteger**操作大整数
+- 可以使用**BigDecimal**指定小数的保留位数
+
+
+
+先来看一下**BigInteger**的使用方式：
+
+如果在操作的时候一个整型数据已经超过了整数的最大类型长度long的话，则此数据就无法装入，所以，此时要使用BigInteger类进行操作。
+
+```java
+BigInteger a = new BigInteger("2021042899");
+BigInteger b = new BigInteger("199903079");
+
+System.out.println(a.add(b));
+System.out.println(a.subtract(b));
+System.out.println(a.multiply(b));
+System.out.println(a.divide(b));
+System.out.println(a.remainder(b));
+
+// output : 
+2220945978            //add
+1821139820            //subtract
+404012698301186021    //multiply
+10                    //divide
+22012109              //remainder
+```
+
+
+
+再来看一下**BigDecimal**的使用方式：
+
+使用此类可以完成大的小数操作，而且也可以使用此类进行精确的四舍五入，这一点在开发中经常使用。
+
+```java
+BigDecimal c = new BigDecimal("1234567890");
+BigDecimal d = new BigDecimal("555555555");
+
+System.out.println(c.add(d));
+System.out.println(c.subtract(d));
+System.out.println(c.multiply(d));
+System.out.println(c.divide(d, 3));
+
+// output : 
+1790123445               //add
+679012335                //subtract
+685871049314128950       //multiply
+2                        //divide
+```
