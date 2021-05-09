@@ -34,11 +34,12 @@ public static void main(String[] args)
     System.out.println(c);
     System.out.println(d);
 }
+
 // output : 
-//   a
-//   九
-//   b
-//   c
+// a
+// 九
+// b
+// c
 ```
 
 
@@ -50,13 +51,13 @@ public static void main(String[] args)
 ```java
 public class Main {
     public static void main(String[] args){
-        //创建对象
-        Character ch = new Character('a');
+        Character ch = new Character('a');  //创建对象
         System.out.println("ch:" + ch); 
     }
 }
+
 // output : 
-//   ch:a
+// ch:a
 ```
 
 
@@ -68,13 +69,14 @@ Java中的 Character 方法：
 ```java
 public class Main {
     public static void main(String[] args) {
-        System.out.println(Character.isLetter('a'));
-        System.out.println(Character.isLetter('1'));
+        System.out.println(Character.isLetter('a')); //字母返回true
+        System.out.println(Character.isLetter('1')); //非字母都是false
     }
 }
+
 // output : 
-//   true
-//   false
+// true
+// false
 ```
 
 ##### 2、isDigit() 是否是一个数字字符
@@ -82,13 +84,14 @@ public class Main {
 ```java
 public class Main {
     public static void main(String[] args) {
-        System.out.println(Character.isDigit('a'));
-        System.out.println(Character.isDigit('1'));
+        System.out.println(Character.isDigit('a'));  //非数字都是false
+        System.out.println(Character.isDigit('1'));  //数字返回true
     }
 }
+
 // output : 
-//   false
-//   true
+// false
+// true
 ```
 
 ##### 3、isWhitespace() 是否是一个空格
@@ -96,13 +99,14 @@ public class Main {
 ```java
 public class Main {
     public static void main(String[] args) {
-        System.out.println(Character.isWhitespace(' '));
-        System.out.println(Character.isWhitespace('*'));
+        System.out.println(Character.isWhitespace(' '));  //空格返回true
+        System.out.println(Character.isWhitespace('*'));  //非空格返回false
     }
 }
+
 // output :
-//   true
-//   false
+// true
+// false
 ```
 
 ##### 4、isUpperCase() 判断是否是大写字母
@@ -110,13 +114,14 @@ public class Main {
 ```java
 public class Main {
     public static void main(String[] args) {
-        System.out.println(Character.isUpperCase('A'));
-        System.out.println(Character.isUpperCase('a'));
+        System.out.println(Character.isUpperCase('A'));  //大写字母返回true
+        System.out.println(Character.isUpperCase('a'));  //非大写字母返回false
     }
 }
+
 // output :
-//   true
-//   false
+// true
+// false
 ```
 
 ##### 5、isLowerCase() 判断是否是小写字母
@@ -124,13 +129,14 @@ public class Main {
 ```java
 public class Main {
     public static void main(String[] args) {
-        System.out.println(Character.isLowerCase('a'));
-        System.out.println(Character.isLowerCase('A'));
+        System.out.println(Character.isLowerCase('a'));  //小写字母返回true
+        System.out.println(Character.isLowerCase('A'));  //非小写字母返回false
     }
 }
+
 // output :
-//   true
-//   false
+// true
+// false
 ```
 
 ##### 6、toUpperCase() 将大小写字母转换为大写
@@ -138,25 +144,26 @@ public class Main {
 ```java
 public class Main {
     public static void main(String[] args) {
-        System.out.println(Character.toUpperCase('a'));
-        System.out.println(Character.toUpperCase('A'));
+        System.out.println(Character.toUpperCase('a'));  //小写字母转化为大写字母输出
+        System.out.println(Character.toUpperCase('A'));  //大写字母不变输出
     }
 }
+
 // output :
-//   A
-//   A
+// A
+// A
 ```
 
 ##### 7、toLowerCase() 将大小写字母转换为小写
 
 ```java
-public class Main {    public static void main(String[] args) {        System.out.println(Character.toLowerCase('a'));        System.out.println(Character.toLowerCase('A'));    }}// output ://   a//   a
+public class Main {    public static void main(String[] args) {        System.out.println(Character.toLowerCase('a'));  //小写字母不变输出        System.out.println(Character.toLowerCase('A'));  //大写字母转化为小写字母输出    }}// output :// a// a
 ```
 
 ##### 8、toString() 返回字符的字符串形式，字符串的长度仅为1
 
 ```java
-public class Main {    public static void main(String[] args) {        System.out.println(Character.toString('a'));        System.out.println(Character.toString('A'));    }}// output ://   a//   A
+public class Main {    public static void main(String[] args) {        System.out.println(Character.toString('a'));  //单个字符，传化为字符串输出        System.out.println(Character.toString('A'));  //单个字符，传化为字符串输出    }}// output :// a// A
 ```
 
 
@@ -187,37 +194,37 @@ Java 提供了 String 类来**创建**和**操作**字符串。
 ##### 1、创建字符串
 
 ```java
-public class Main {    public static void main(String[] args){        String s1 = "jiuzhang_1";               // String 直接创建        String s2 = s1;                         // 相同引用        String s3 = new String("jiuzhang_2");   // String 对象创建        System.out.println(s1);        System.out.println(s2);        System.out.println(s3);    }}// output ://   jiuzhang_1//   jiuzhang_1//   jiuzhang_2
+public class Main {    public static void main(String[] args){        String s1 = "jiuzhang_1";               // String 直接创建        String s2 = s1;                         // 相同引用        String s3 = new String("jiuzhang_2");   // String 对象创建        System.out.println(s1);        System.out.println(s2);        System.out.println(s3);    }}// output :// jiuzhang_1// jiuzhang_1// jiuzhang_2
 ```
 
 ##### 2、合并两个字符串
 
 ```java
-public class Main {    public static void main(String[] args){        String str1="jiu zhang ";  //创建字符串1        String str2="da fa hao";   //创建字符串2        String str=str1+str2;      //字符串相加                System.out.println(str);   //输出字符串    }}// output ://   jiu zhang da fa hao
+public class Main {    public static void main(String[] args){        String str1="jiu zhang ";  //创建字符串1        String str2="da fa hao";   //创建字符串2        String str=str1+str2;      //字符串相加                System.out.println(str);   //输出字符串    }}// output :// jiu zhang da fa hao
 ```
 
 ##### 3、length() 获取字符串长度
 
 ```java
-public class Main {    public static void main(String[] args)    {        String str1="jiu zhang da fa hao";        int len = str1.length();        System.out.println(len);    }}// output ://   19
+public class Main {    public static void main(String[] args)    {        String str1="jiu zhang da fa hao";        int len = str1.length();        System.out.println(len);  //输出字符串的长度    }}// output :// 19
 ```
 
 ##### 4、equals() 判断两个字符串是否相同
 
 ```java
-public class Main {    public static void main(String[] args){        String str1="jiu zhang ";        String str2="jiu zhang ";        String str3="da fa hao";        boolean a=str1.equals(str2);        boolean b=str1.equals(str3); //判断两个字符串是否相同,相同输出true，否则输出false                System.out.println(a);        System.out.println(b);    }}// output ://   true//   false
+public class Main {    public static void main(String[] args){        String str1="jiu zhang ";        String str2="jiu zhang ";        String str3="da fa hao";        boolean a=str1.equals(str2);        boolean b=str1.equals(str3); //判断两个字符串是否相同,相同输出true，否则输出false                System.out.println(a);        System.out.println(b);    }}// output :// true// false
 ```
 
 ##### 5、contains() 判断某个字符串是否另一个字符串中出现过
 
 ```java
-public class Main {    public static void main(String[] args)    {        String str1="jiu zhang";        String str2="jiu";        String str3="zhuang";        boolean a=str1.contains(str2);          //子字符串是否被包含在此字符串之中,包含输出true，否则输出false        boolean b=str1.contains(str3);                System.out.println(a);        System.out.println(b);    }}// output ://   true//   false
+public class Main {    public static void main(String[] args)    {        String str1="jiu zhang";        String str2="jiu";        String str3="zhuang";        boolean a=str1.contains(str2);          //子字符串是否被包含在此字符串之中,包含输出true，否则输出false        boolean b=str1.contains(str3);                System.out.println(a);        System.out.println(b);    }}// output :// true// false
 ```
 
 ##### 6、replace() 子字符串替换为其他的新的指定字符串
 
 ```java
-public class Main {    public static void main(String[] args)    {        String str1="xx, jiu zhang da fa hao";        String str2=str1.replace("xx","Sherry"); //将xx替换为Sherry        System.out.println("替换前：" + str1);        System.out.println("替换后：" + str2);    }}// output ://   替换前：xx, jiu zhang da fa hao//   替换后：Sherry, jiu zhang da fa hao
+public class Main {    public static void main(String[] args)    {        String str1="xx, jiu zhang da fa hao";        String str2=str1.replace("xx","Sherry"); //将xx替换为Sherry        System.out.println("替换前：" + str1);        System.out.println("替换后：" + str2);    }}// output :// 替换前：xx, jiu zhang da fa hao// 替换后：Sherry, jiu zhang da fa hao
 ```
 
 
@@ -242,79 +249,79 @@ public class Main {    public static void main(String[] args)    {        String
 ##### 1、创建字符串
 
 ```python
-if __name__ == '__main__':    str1 = "jiu zhang"   # 双引号    str2 = 'da fa hao'   # 单引号    print(str1)    print(str2)# output :#    jiu zhang#    da fa hao
+if __name__ == '__main__':    str1 = "jiu zhang"   # 双引号    str2 = 'da fa hao'   # 单引号    print(str1)    print(str2)    # output :# jiu zhang# da fa hao
 ```
 
 ##### 2、访问单个字符
 
 ```python
-if __name__ == '__main__':    str1 = "jiu zhang"      print("str1[0]:", str1[0])# output :#    str1[0]: j
+if __name__ == '__main__':    str1 = "jiu zhang"      print("str1[0]:", str1[0])    # output :# str1[0]: j
 ```
 
 ##### 3、字符串的连接
 
 ```python
-if __name__ == '__main__':    str1 = "jiu zhang "    str2 = 'da fa hao'    print(str1 + str2)# output :#    jiu zhang da fa hao
+if __name__ == '__main__':    str1 = "jiu zhang "    str2 = 'da fa hao'    print(str1 + str2)    # output :# jiu zhang da fa hao
 ```
 
 ##### 4、**重复输出字符串**
 
 ```python
-if __name__ == '__main__':    str1 = "jiu zhang, "    str2 = 'da fa hao'    print(str1 * 3 + str2)# output :#    jiu zhang, jiu zhang, jiu zhang, da fa hao
+if __name__ == '__main__':    str1 = "jiu zhang, "    str2 = 'da fa hao'    print(str1 * 3 + str2)    # output :# jiu zhang, jiu zhang, jiu zhang, da fa hao
 ```
 
 ##### 5、**获取字符串中的单个字符**
 
 ```python
-if __name__ == '__main__':    str1 = "jiu zhang"    print(str1[0])    print(str1[-1]) # 索引值还可以从-1开始，-1代表倒数第一个字符# output :#    j#    g
+if __name__ == '__main__':    str1 = "jiu zhang"    print(str1[0])    print(str1[-1]) # 索引值还可以从-1开始，-1代表倒数第一个字符    # output :# j# g
 ```
 
 ##### 6、**截取指定长度的字符串**
 
 ```python
-if __name__ == '__main__':    # 通过下标截取字符串    str1 = "jiu zhang"    print(str1[1:6])    # 注意：截取字符串的范围是str[start : end] 它是一个前闭后开的区间[start，end)    # 如果n的值超过了字符串的最大长度，则仍然截取原下标的长度    # 从开头截取到指定索引之前[0，3）    print(str1[:3])    # 从指定截取到结尾[4,len(str1))    print(str1[4:])    # 注意在使用str[start : end]来截取字符串的时候，若start不写默认从第一个字符开始    # 若end不写，则默认到最后一个字符结束。取头去尾。    print("012345"[1:-1])    # output :#    iu zh#    jiu#    zhang#    1234
+if __name__ == '__main__':    # 通过下标截取字符串    str1 = "jiu zhang"    print(str1[1:6])    # 注意：截取字符串的范围是str[start : end] 它是一个前闭后开的区间[start，end)    # 如果n的值超过了字符串的最大长度，则仍然截取原下标的长度    # 从开头截取到指定索引之前[0，3）    print(str1[:3])    # 从指定截取到结尾[4,len(str1))    print(str1[4:])    # 注意在使用str[start : end]来截取字符串的时候，若start不写默认从第一个字符开始    # 若end不写，则默认到最后一个字符结束。取头去尾。    print("012345"[1:-1])    # output :# iu zh# jiu# zhang# 1234
 ```
 
 ##### 7、**判断某个字符串是否另一个字符串中出现过**
 
 ```python
-if __name__ == '__main__':    str1 = "jiu zhang"    print("jiu" in str1)# output :#    True
+if __name__ == '__main__':    str1 = "jiu zhang"    print("jiu" in str1)    # output :# True
 ```
 
 ##### 8、**len()** 求字符串的长度
 
 ```python
-if __name__ == '__main__':    str1 = "jiu zhang"    print(len(str1))# output :#    9
+if __name__ == '__main__':    str1 = "jiu zhang"    print(len(str1))    # output :# 9
 ```
 
 ##### 9、str.lower() 所有大写字母转换为小写字母
 
 ```python
-if __name__ == '__main__':    str1 = "Jiu Zhang"    print(str1.lower());# output :#    jiu zhang
+if __name__ == '__main__':    str1 = "Jiu Zhang"    print(str1.lower());    # output :# jiu zhang
 ```
 
 ##### 10、str.upper() 所有小写字母转换为大写字母
 
 ```python
-if __name__ == '__main__':    str1 = "Jiu Zhang"    print(str1.upper());# output :#    JIU ZHANG
+if __name__ == '__main__':    str1 = "Jiu Zhang"    print(str1.upper());    # output :# JIU ZHANG
 ```
 
 ##### 11、str.capitalize() 首字母大写，其他小写的字符串
 
 ```python
-if __name__ == '__main__':    str1 = "jiu zhang"    print(str1.capitalize());# output :#    Jiu zhang
+if __name__ == '__main__':    str1 = "jiu zhang"    print(str1.capitalize());    # output :# Jiu zhang
 ```
 
 ##### 12、str.title() 返回一个每个单词首字母大写的字符串
 
 ```python
-if __name__ == '__main__':    str1 = "jiu zhang"    print(str1.title());# output :#    Jiu Zhang
+if __name__ == '__main__':    str1 = "jiu zhang"    print(str1.title());    # output :# Jiu Zhang
 ```
 
 ##### 13、**replace**() **字符串的替换**
 
 ```python
-if __name__ == '__main__':    str1 = "xx, jiu zhang da fa hao"    str2 = str1.replace("xx", 'Sherry')    print(str1);    print(str2);# output :#    xx, jiu zhang da fa hao#    Sherry, jiu zhang da fa hao
+if __name__ == '__main__':    str1 = "xx, jiu zhang da fa hao"    str2 = str1.replace("xx", 'Sherry')    print(str1);    print(str2);    # output :# xx, jiu zhang da fa hao# Sherry, jiu zhang da fa hao
 ```
 
 
