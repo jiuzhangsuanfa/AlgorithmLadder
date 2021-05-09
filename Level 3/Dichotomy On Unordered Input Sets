@@ -1,56 +1,126 @@
 # 无序输入集上的二分法(Dichotomy On Unordered Input Sets)
 
-二分法与数组是否排序无关，之前我们学习了如何在有序数组上使用二分法，我们同样可以在无序数组上使用二分法。下面是二分法在无序输入集上的应用。
+二分法在某些条件下可以与数组是否排序无关，之前我们学习了如何在有序数组上使用二分法，我们同样可以在无序数组上使用二分法。下面介绍二分法在无序输入集上的应用。
 
 ## [寻找峰值(Find Peak Element)](https://www.lintcode.com/problem/75/)
 
-我们需要在一组波浪形的数组中寻找任意的局部峰值。
+我们需要在一组波浪形的数组中寻找任意的局部峰值点。
 
-为了使峰值一定存在，我们对数组做出以下规定
+为了使峰值点一定存在，我们对数组做出以下规定：
 
 * 相邻位置的数字是不同的
 
 * $A[0] < A[1] 且 A[n-2] > A[n-1]$
 
-假设$P$是峰值的位置，即$P$点满足$A[P] > A[P-1]$且$A[P] > A[P+1]$
+假设$P$是峰值的位置，即$P$点满足$A[P] > A[P-1]$且$A[P] > A[P+1]$。
 
-相邻位置的数字是不同的，使得不会出现如$[1,2,2,1]$形式的平顶峰
+相邻位置的数字是不同的，使得不会出现如$[1,2,2,1]$形式的平顶山。
 
-图1
+<img src="https://github.com/jiuzhangsuanfa/AlgorithmLadder/blob/master/Level%203/Image/%5BL3-1%5DDichotomy%20On%20Unordered%20Input%20Sets%201.png?raw=true" style="zoom:83%;"/>
 
-$A[0] < A[1] 且 A[n-2] > A[n-1]$，就意味两端都是向中间上升的趋势。
+$A[0] < A[1] 且 A[n-2] > A[n-1]$，就意味两端都是向中间上升的趋势，使得峰值必定点存在。
 
-两端都向中间下降，可能没有山峰
+**分析：**
 
-图2
+1. 两端都向中间下降，可能没有山峰：
 
-只有一端向中间上升，可能没有山峰
+<img src="https://github.com/jiuzhangsuanfa/AlgorithmLadder/blob/master/Level%203/Image/%5BL3-1%5DDichotomy%20On%20Unordered%20Input%20Sets%202.png?raw=true"/>
 
-图3
+2. 只有一端向中间上升，可能没有山峰：
 
-两端都是向中间上升的趋势，一定有山峰
+<img src="https://github.com/jiuzhangsuanfa/AlgorithmLadder/blob/master/Level%203/Image/%5BL3-1%5DDichotomy%20On%20Unordered%20Input%20Sets%203.png?raw=true" style="zoom:87%;"/>
 
-图4
+3. 两端都是向中间上升的趋势，一定有山峰：
 
-**数学证明：**
-$A[0] < A[1] 且 A[n-2] > A[n-1]$ 等价于在$0$处的导数$f'(0) > 0$ 且 在$n-2$处的导数$f'(n-2) < 0$，那么在$0$到$n-2$中一定存在局部极值。
+<img src="https://github.com/jiuzhangsuanfa/AlgorithmLadder/blob/master/Level%203/Image/%5BL3-1%5DDichotomy%20On%20Unordered%20Input%20Sets%204.png?raw=true" style="zoom:87%;"/>
 
-以数组$[1,2,1,3,4,5,7,6]$为例，存在两个峰值$2$和$7$他们的下标分别为$1$和$6$。
+**严格数学证明：** $A[0] < A[1] 且 A[n-2] > A[n-1]$等价于在$0$处的导数$f'(0) > 0$ 且 在$n-2$处的导数$f'(n-2) < 0$，那么在$0$到$n-2$中一定存在局部极值。
 
-图5
+用通俗的话讲，先上升后下降，那么在区间内就会存在一个局部的极大值点，也就是我们需要求的峰值点。
 
-那么我们如何判断是否存在峰值点呢？与上边的数学证明峰值存在问题同理，当左端点为上升趋势，右端点为下降趋势时，在左右端点之间一定存在一个满足条件的峰值点。因此，我们可以根据middle点左右两侧的趋势和左右端点的趋势进行二分查找。
+**样例：**
 
-middle左右分别存在上升和下降两种趋势的可能性，下面我们对这四种情况分别进行讨论。
+输入：
 
-1. 当middle左降右降时，middle的左半区域就形成了先上升后下降的趋势，则左边存在峰值；
-2. 当middle左升右升时，middle的右半区域就形成了先上升后下降的趋势，则右边存在峰值；
-3. 当middle左降右升时，左边和右边都存在峰值；
+```
+[1,2,1,3,4,5,7,6]
+```
+
+输出：
+
+```
+1或者6都可以
+```
+
+解释：
+
+存在两个峰值$2$和$7$他们的下标分别为$1$和$6$。
+
+<img src="https://github.com/jiuzhangsuanfa/AlgorithmLadder/blob/master/Level%203/Image/%5BL3-1%5DDichotomy%20On%20Unordered%20Input%20Sets%205.png?raw=true" style="zoom:87%;"/>
+
+那么我们如何寻找峰值点呢？
+
+与上边的数学证明峰值存在问题同理，当左端点为上升趋势，右端点为下降趋势时，在左右端点之间一定存在一个满足条件的峰值点。
+
+看到这里你是不是想到二分法的思想或许可以应用于当前情况。
+
+我们来回顾一下二分法。
+
+**原理：** 在有序的数组上通过每次$O(1)$时间复杂度的比较，将区间缩小一半，最终总时间复杂度为$O(logn)$。
+
+```java
+// 要点1: start + 1 < end
+while (start + 1 < end) {
+    // 要点2：start + (end - start) / 2
+    int mid = start + (end - start) / 2;
+    // 要点3：=, <, > 分开讨论，mid 不+1也不-1
+    if (nums[mid] == target) {
+        return mid;
+    } else if (nums[mid] < target) {
+        start = mid;
+    } else {
+        end = mid;
+    }
+}
+```
+
+```python
+# 用 start + 1 < end 而不是 start < end 的目的是为了避免死循环
+# 在 first position of target 的情况下不会出现死循环
+# 但是在 last position of target 的情况下会出现死循环
+# 样例：nums=[1，1] target = 1
+# 为了统一模板，我们就都采用 start + 1 < end，就保证不会出现死循环
+while start + 1 < end:
+    # python 没有 overflow 的问题，直接 // 2 就可以了
+    # java和C++ 最好写成 mid = start + (end - start) / 2
+    # 防止在 start = 2^31 - 1, end = 2^31 - 1 的情况下出现加法 overflow
+    mid = (start + end) // 2
+
+    # > , =, < 的逻辑先分开写，然后在看看 = 的情况是否能合并到其他分支里
+    if nums[mid] < target:
+        start = mid
+    elif nums[mid] == target:
+        end = mid
+    else: 
+        end = mid
+```
+
+和有序的二分法的区别在于区间选择的判断方法不同，那么我们应该如何缩小区间呢？
+
+没错，我们可以根据middle点左右两侧的趋势和左右端点的趋势进行判断，选择必定有峰值的区间，每次将区间缩小一半。下面我们对middle点左右的所有情况进行讨论。
+
+middle左右分别存在上升和下降两种趋势的可能性：
+
+1. 当middle左降右升时，左边和右边都存在峰值；
+2. 当middle左降右降时，middle的左半区域就形成了先上升后下降的趋势，则左边一定存在峰值；
+3. 当middle左升右升时，middle的右半区域就形成了先上升后下降的趋势，则右边一定存在峰值；
 4. 当middle左升右降时，不能判断左右是否存在峰值，但是middle点本身即为一个峰值点。
 
-图6
+<img src="https://github.com/jiuzhangsuanfa/AlgorithmLadder/blob/master/Level%203/Image/%5BL3-1%5DDichotomy%20On%20Unordered%20Input%20Sets%206.png?raw=true" style="zoom:107%;"/>
 
-java代码
+这样，我们发现不论middle左右的情况是什么样的，我们都能在每次操作后至少将区间减小一半。
+
+**二分法的判断模块代码**
 
 ```java
 if (A[mid] < A[mid - 1] && A[mid] < A[mid + 1]) {
@@ -65,7 +135,23 @@ if (A[mid] < A[mid - 1] && A[mid] < A[mid + 1]) {
 }
 ```
 
-不同情况有相同的处理方式，进行归纳合并，最终形成完整代码
+```python
+if A[mid] < A[mid - 1] and A[mid] < A[mid + 1]:
+    end = mid
+    # start = mid;
+elif A[mid] < A[mid - 1] and A[mid] > A[mid + 1]:
+    end = mid
+elif A[mid] > A[mid - 1] and A[mid] < A[mid + 1]:
+    start = mid
+elif A[mid] > A[mid - 1] and A[mid] > A[mid + 1]:
+    return mid
+```
+
+不同情况有相同的处理方式，可以进行归纳合并，最终形成完整代码。
+
+**注意:** 与有序数组上的二分法不同的是，在合并判断时两次判断的**比较对象不同**。
+
+**参考代码：**
 
 ```java
 public class Solution {
@@ -96,8 +182,6 @@ public class Solution {
         return A[start] < A[end] ? end : start;
 ```
 
-python代码
-
 ```python
 class Solution:
     """
@@ -124,7 +208,3 @@ class Solution:
 ```
 
 **拓展：** 我们无法使用二分法在$O(logn)$的时间复杂度内求得全局的峰值。无序的数组上没有规律，我们只能做到$O(n)$的时间复杂度。若是寻找所有的峰的方法寻找，因为存在如$[1,2,1,2,...,1,2,1]$的情况。使得存在接近$\frac{n}{2}$个峰，光寻找峰都需要$O(\frac{n}{2})$的时间复杂度，排除。
-
-<!-- TODO:
-1.标题的英文修改
-2.图片上传 -->
