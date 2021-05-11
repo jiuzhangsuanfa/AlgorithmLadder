@@ -1,0 +1,268 @@
+# 枚举法(enumeration method)
+
+## 1. 定义
+
+在进行归纳推理时，如果逐个考察了某类事件的所有可能情况，因而得出一般结论，那么该结论是可靠的，这种归纳方法叫做枚举法(enumeration method)，也叫穷举法(exhaustive method)。
+
+## 2. 解题思想
+
+枚举算法是我们在日常中使用到的最多的一个算法，它的核心思想就是：枚举所有的可能。需要将问题的所有可能的答案逐一列举出来，根据题意判断是否符合要求，符合要求的按题意操作，不符合要求的丢弃。
+
+## 3. 使用条件
+
+枚举法的本质就是从所有候选答案中去搜索正确的解，使用该算法需要满足两个条件：
+
+​	(1) 可预先确定候选答案的数量。
+
+​	(2) 候选答案的范围在求解之前必须有一个确定的集合。
+
+## 4. 主要步骤 
+
+枚举法是一种简单、容易理解的算法，使用该算法需要执行三个步骤：
+
+​	(1) 确定候选答案的范围。需要分析出问题所涉及的各种情况，不能遗漏任何一个可能答案，同时要避免重复列举。
+
+​	(2) 分析问题的解需要满足的条件。 
+
+​	(3) 逐一列举所有候选答案，判断是否符合正确答案需要满足的条件，符合的保留，不符合的丢弃。 
+
+## 5. 算法实例
+
+### 1. 求数组中的最大值(Find the maximum value in the array)
+
+**描述：**
+
+给一个浮点数数组$A$，求数组$A$中的最大值。
+
+**样例**
+
+**样例 1:**
+
+输入：
+
+``` 
+A = [1.0, 2.1, -3.3]
+```
+
+输出：
+
+``` 
+2.1
+```
+
+样例解释：
+
+最大的数字是2.1
+
+**样例 2:**
+
+输入:
+
+```
+A = [1.0, 1.0, -3.3]
+```
+
+输出: 
+
+```
+1.0	
+```
+
+
+样例解释:
+
+最大的数字是1.0
+
+**解题步骤：**
+
+​	(1) 确定题目的候选答案的范围——数组中的每一个数。数组中的每一个数，都可能是数组中的最大值。
+
+​	(2) 数组中的最大数大于等于数组中的每一个数。可以利用实数不等关系的传递性（若$A>=B$且$B>=C$，则$A>=C$）来寻找数组中的最大值。
+
+​	(3) 逐一列举数组中的每一个数，记录最大的数值。
+
+**流程图：**
+
+若数组$A$如下图所示：
+
+<img src="https://github.com/jiuzhangsuanfa/AlgorithmLadder/blob/master/Level%201/Image/%5BL1_6%5Denumeration%20method%201.png?raw=true" style="zoom:67%;" />
+
+枚举算法的流程图如下所示：
+
+<img src="https://github.com/jiuzhangsuanfa/AlgorithmLadder/blob/master/Level%201/Image/%5BL1_6%5Denumeration%20method%202.png?raw=true" style="zoom:67%;" />
+
+变量依次变为：
+
+<img src="https://github.com/jiuzhangsuanfa/AlgorithmLadder/blob/master/Level%201/Image/%5BL1_6%5Denumeration%20method%203.png?raw=true" style="zoom:67%;" />
+
+**代码:**
+
+```python
+# @param {double[]} A a float array
+# @return {double} a float number
+def maxOfArray(A):
+    # max_value初始值定为数组A的第一个数。
+	max_value = A[0]
+    
+    # 遍历枚举数组A的每一个数。
+	for number in A:
+        
+        # max_value一直保存当前枚举过的所有数的最大值(依据实数不等关系的传递性)。
+		if max_value < number:
+			max_value = number
+            
+    # 枚举所有浮点数后，返回最大值。
+	return max_value
+
+if __name__ == '__main__':
+    array = [5,123,1005,2323,-4324,213]
+    print(maxOfArray(array))
+```
+
+``` java
+import java.util.ArrayList;
+import java.util.List;
+
+public class Main {
+	/**
+	 * @param A a float array
+	 * @return a float number
+	 */
+	public static float maxOfArray(float[] A) {
+	    // 答案max_value初始值定为数组A的第一个数。
+		float max_value = A[0];
+	    
+	    // 遍历枚举数组A的每一个数。
+		for (int i = 1; i < A.length; i++) {
+	        
+	        // max_value一直保存当前枚举过的所有数的最大值(依据实数不等关系的传递性)。
+			if (A[i] > max_value) {
+				max_value = A[i];
+			}
+		}
+	    
+	    // 枚举所有浮点数后，返回最大值。
+		return max_value;
+	}
+	
+	public static void main(String[] args) {
+		float array[] = {5,123,1005,2323,-4324,213};
+		System.out.print(maxOfArray(array));
+	}
+}
+```
+
+### 2.$100$以内的素数(All prime numbers within one hundred)
+
+**描述：**
+
+​	输出$100$以内所有的素数。
+
+**解题步骤：**
+
+​	(1) 确定题目的候选答案的范围——$2$ ~ $100$内的所有自然数。因为`1`既不是素数也不是合数，$2$ ~ $100$ 内的每一个自然数都可能是素数。
+
+​	(2) 素数又称质数，质数是指在大于 $1$ 的自然数中，除了 $1$ 和它本身以外不再有其他因数的自然数。
+
+​	(3) 逐一列举 $2$ ~ $100$ 内的所有自然数，对每个自然数判断是否是素数，是素数即输出。
+
+**流程图：**
+
+<img src="https://github.com/jiuzhangsuanfa/AlgorithmLadder/blob/master/Level%201/Image/%5BL1_6%5Denumeration%20method%204.png?raw=true" style="zoom:67%;" />
+
+**代码：**
+
+``` python
+"""
+@return: return all prime numbers within n.
+"""
+def prime(n):
+    # result列表用来存储100以内的所有素数。
+    result = []
+
+    # 枚举2~100内的所有整数。
+    for i in range(2, 101):
+
+        # 如果i是素数。
+        if is_prime(i):
+            # 添加到result列表内。
+            result.append(i)
+
+    # 输出列表内的所有素数。
+    return result
+
+
+# 判断x是否是素数
+def is_prime(x):
+    for i in range(2, x):
+        # x有非1和自身的因子，x不是素数，返会False。
+        if (x % i == 0):
+            return False
+    # 除1和自身外，x没有因子，x是素数，返回True。
+    return True
+
+if __name__ == '__main__':
+print(prime(100))
+```
+
+```java
+import java.util.ArrayList;
+import java.util.List;
+public class Main {
+	/**
+	 * @return: return all prime numbers within n.
+	 */
+	public static List<Integer> prime(int n) {
+	    // result列表用来存储100以内的所有素数。
+		List<Integer> result = new ArrayList<>();
+	    
+	    // 枚举2~100内的所有整数。
+		for (int i = 2; i <= n; i++) {
+	        
+	        // 如果i是素数。
+			if (isPrime(i)) {
+	            
+	            // 添加到result列表内。
+				result.add(i);
+			}
+		}
+		// 输出列表内的所有素数。
+	    return result;
+	}
+
+	// 判断x是否是素数
+	private static boolean isPrime(int n) {
+		
+        // n有非1和自身的因子，n不是素数，返会False。
+		for (int i = 2; i < n; i++) {
+	    	if (n % i == 0) {
+	        	return false;
+	        }
+	    }
+		// 除1和自身外，x没有因子，x是素数，返回True。
+	    return true;
+	}
+	
+	public static void main(String[] args) {
+		List<Integer> answer = prime(100);
+		for(int i =0; i<answer.size();i++) {
+			System.out.print(answer.get(i)+" ");
+		}
+	}
+}
+
+```
+
+
+
+## 6. 枚举法的特点
+
+​	(1) 得到的结果肯定正确。
+
+​	(2) 简单粗暴，比较直观，易于理解。
+
+​	(3) 效率较低，可能会对大量错误答案进行枚举判断。
+
+​	(4) 如果数据量较大，可能会造成时间崩溃。
+
+​	(5) 通常会涉及到求最值（如最大、最小、最重 等）。 
